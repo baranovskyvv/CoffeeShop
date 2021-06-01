@@ -1,32 +1,42 @@
 package by.softClub.CoffeeShop.model.product;
 
+import by.softClub.CoffeeShop.repo.CoffeeRepo;
+
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.util.Objects;
 
+@ManagedBean(name = "coffee")
 @Entity
 @Table(name = "coffee")
 public class Coffee extends Product {
     @Column(name = "type_of_coffee")
     @Enumerated(EnumType.STRING)
-    private TypeOfCoffe typeOfCoffe;
+    private TypeOfCoffee typeOfCoffee;
     @Column(name = "weight")
     private int weightInGram;
 
     public Coffee() {
     }
 
-    public Coffee(String name, Manufacturer manufacturer, String description, Integer price, TypeOfCoffe typeOfCoffe, int weightInGram) {
+    public Coffee(String name, Manufacturer manufacturer, String description, Integer price, TypeOfCoffee typeOfCoffee, int weightInGram) {
         super(name, manufacturer, description, price);
-        this.typeOfCoffe = typeOfCoffe;
+        this.typeOfCoffee = typeOfCoffee;
         this.weightInGram = weightInGram;
     }
 
-    public TypeOfCoffe getTypeOfCoffe() {
-        return typeOfCoffe;
+    public String createCoffee() {
+        CoffeeRepo coffeeRepo = new CoffeeRepo();
+        coffeeRepo.save(new Coffee(this.getName(), this.getManufacturer(), getDescription(),getPrice(), typeOfCoffee, weightInGram));
+        return "index.html";
     }
 
-    public void setTypeOfCoffe(TypeOfCoffe typeOfCoffe) {
-        this.typeOfCoffe = typeOfCoffe;
+    public TypeOfCoffee getTypeOfCoffee() {
+        return typeOfCoffee;
+    }
+
+    public void setTypeOfCoffee(TypeOfCoffee typeOfCoffee) {
+        this.typeOfCoffee = typeOfCoffee;
     }
 
     public int getWeightInGram() {
@@ -44,12 +54,12 @@ public class Coffee extends Product {
         if (!super.equals(o)) return false;
         Coffee coffee = (Coffee) o;
         return weightInGram == coffee.weightInGram &&
-                typeOfCoffe == coffee.typeOfCoffe;
+                typeOfCoffee == coffee.typeOfCoffee;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), typeOfCoffe, weightInGram);
+        return Objects.hash(super.hashCode(), typeOfCoffee, weightInGram);
     }
 
 }

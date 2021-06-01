@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form>
+        <f:facet name="header">Coffee form</f:facet>
+        <h:outputText value="name"/>
+        <p:inputText id="name" value="#{coffee.name}"/>
+    <br/>
+        <h:outputText value="manufacturer"/>
+        <p:inputText id="manufacturer" value="#{coffee.manufacturer}"/>
+        <br/>
+        <h:outputText value="description"/>
+        <p:inputText id="description" value="#{coffee.description}"/>
+        <br/>
+        <h:outputText value="price"/>
+        <p:inputText id="price" value="#{coffee.price}"/>
+        <br/>
+        <h:outputText value="typeOfCoffee"/>
+        <p:inputText id="typeOfCoffee" value="#{coffee.typeOfCoffee}"/>
+        <br/>
+        <h:outputText value="weightInGram"/>
+        <p:inputText id="weightInGramm" value="#{coffee.weightInGram}"/>
+        <br/>
+        <p:commandButton value="Coffee" action="#{coffee.createCoffee}"/>
+    </h:form>
+</h:body>
+</html>

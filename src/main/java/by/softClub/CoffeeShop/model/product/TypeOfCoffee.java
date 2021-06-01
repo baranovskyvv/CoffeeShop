@@ -1,6 +1,6 @@
 package by.softClub.CoffeeShop.model.product;
 
-public enum TypeOfCoffe {
+public enum TypeOfCoffee {
     Arabica,
     Robusta,
     Mix
