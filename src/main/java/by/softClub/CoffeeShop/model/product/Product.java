@@ -6,8 +6,8 @@ import java.util.Objects;
 @MappedSuperclass
 public class Product {
     @Id
-    @Column(name = "product_id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
@@ -17,11 +17,12 @@ public class Product {
     @Column(name = "description")
     private String description;
     @Column(name = "price")
-    private Integer price;
+    private Double price;
+
     public Product() {
     }
 
-    public Product(String name, Manufacturer manufacturer, String description, Integer price) {
+    public Product(String name, Manufacturer manufacturer, String description, Double price) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.description = description;
@@ -60,11 +61,11 @@ public class Product {
         this.description = description;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

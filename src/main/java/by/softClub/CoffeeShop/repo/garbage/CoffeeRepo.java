@@ -1,6 +1,7 @@
-package by.softClub.CoffeeShop.repo;
+package by.softClub.CoffeeShop.repo.garbage;
 
 import by.softClub.CoffeeShop.model.product.Coffee;
+import by.softClub.CoffeeShop.repo.CrudRepository;
 import by.softClub.CoffeeShop.util.HibernateSessionFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -35,7 +36,7 @@ public class CoffeeRepo implements CrudRepository<Coffee> {
     }
 
     public Coffee findById(long id) {
-        return (Coffee) HibernateSessionFactory.getSessionFactory().openSession().get(Coffee.class, id);
+        return  HibernateSessionFactory.getSessionFactory().openSession().get(Coffee.class, id);
     }
 
     public List<Coffee> findAll() {
@@ -44,4 +45,16 @@ public class CoffeeRepo implements CrudRepository<Coffee> {
         return query.list();
     }
 
+    public List<String> getAllNames() {
+        Session session= HibernateSessionFactory.getSessionFactory().openSession();
+        Query query= session.createQuery("select name from Coffee");
+        return query.list();
+    }
+
+    public Coffee findByName(String name) {
+        Session session= HibernateSessionFactory.getSessionFactory().openSession();
+        Query query= session.createQuery("from Coffee where name=:paramName");
+        query.setParameter("paramName",name);
+        return (Coffee) query.uniqueResult();
+    }
 }

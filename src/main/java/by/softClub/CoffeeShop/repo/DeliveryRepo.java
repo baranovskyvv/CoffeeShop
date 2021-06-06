@@ -1,6 +1,6 @@
 package by.softClub.CoffeeShop.repo;
 
-import by.softClub.CoffeeShop.model.User;
+import by.softClub.CoffeeShop.model.Delivery;
 import by.softClub.CoffeeShop.util.HibernateSessionFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -8,21 +8,21 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class UserRepo implements CrudRepository<User> {
+public class DeliveryRepo implements CrudRepository<Delivery> {
     @Override
-    public void save(User user) {
+    public void save(Delivery delivery) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(user);
+        session.save(delivery);
         transaction.commit();
         session.close();
     }
 
     @Override
-    public void update(User user) {
+    public void update(Delivery delivery) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(user);
+        session.update(delivery);
         transaction.commit();
         session.close();
     }
@@ -31,21 +31,21 @@ public class UserRepo implements CrudRepository<User> {
     public void delete(long id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        User user = (User) session.load(User.class, id);
+        Delivery user = (Delivery) session.load(Delivery.class, id);
         session.delete(user);
         transaction.commit();
         session.close();
     }
 
     @Override
-    public User findById(long id) {
-        return (User) HibernateSessionFactory.getSessionFactory().openSession().get(User.class, id);
+    public Delivery findById(long id) {
+        return (Delivery) HibernateSessionFactory.getSessionFactory().openSession().get(Delivery.class, id);
     }
 
     @Override
-    public List<User> findAll() {
+    public List<Delivery> findAll() {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Query query = session.createQuery("From User");
+        Query query = session.createQuery("From Delivery");
         return query.list();
     }
 }

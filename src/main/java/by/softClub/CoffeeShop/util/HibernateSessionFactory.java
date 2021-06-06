@@ -1,8 +1,8 @@
 package by.softClub.CoffeeShop.util;
 
-import by.softClub.CoffeeShop.model.Cart;
+
+import by.softClub.CoffeeShop.model.Delivery;
 import by.softClub.CoffeeShop.model.Order;
-import by.softClub.CoffeeShop.model.User;
 import by.softClub.CoffeeShop.model.product.Coffee;
 import by.softClub.CoffeeShop.model.product.Product;
 import org.hibernate.SessionFactory;
@@ -22,8 +22,7 @@ public class HibernateSessionFactory {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Product.class);
                 configuration.addAnnotatedClass(Coffee.class);
-                configuration.addAnnotatedClass(User.class);
-                configuration.addAnnotatedClass(Cart.class);
+                configuration.addAnnotatedClass(Delivery.class);
                 configuration.addAnnotatedClass(Order.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());

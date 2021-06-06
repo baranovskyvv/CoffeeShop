@@ -1,19 +1,24 @@
 package by.softClub.CoffeeShop.repo;
 
+import by.softClub.CoffeeShop.model.Delivery;
 import by.softClub.CoffeeShop.model.Order;
-import by.softClub.CoffeeShop.model.StatusOrder;
-import by.softClub.CoffeeShop.model.User;
+import by.softClub.CoffeeShop.model.product.Coffee;
+import by.softClub.CoffeeShop.repo.garbage.CoffeeRepo;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
+
 
 class OrderRepoTest {
     CrudRepository orderRepo = new OrderRepo();
-    CrudRepository userRepo = new UserRepo();
+    CoffeeRepo coffeeRepo = new CoffeeRepo();
+
 
     @Test
     void save() {
-        Order order = new Order((User) userRepo.findById(1), null, StatusOrder.Active);
+        Coffee coffee= coffeeRepo.findById(1);
+        Order order = new Order(new Delivery("Pushkina 7-4", LocalDateTime.now(),
+                LocalDateTime.now().plusDays(1)),"+375669516532",coffee,250);
         orderRepo.save(order);
     }
 
@@ -27,11 +32,12 @@ class OrderRepoTest {
 
     @Test
     void findById() {
-        Order order = (Order) orderRepo.findById(1);
-        System.out.println(order.getCart());
+
+
     }
 
     @Test
     void findAll() {
     }
+
 }

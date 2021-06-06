@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h2>Employee Information System</h2>
+        <table>
+            <tr>
+                <td>Название кофе:</td>
+                <td>
+                    <p:selectOneMenu id="name" value="#{controllerOrder.nameCoffee}">
+                        <f:selectItem itemLabel="Select One" itemValue=""/>
+                        <f:selectItems value="#{controllerOrder.allName}"/>
+                    </p:selectOneMenu>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Вес</td>
+                <td>
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="@next" value="Введите вес:"/>
+                        <p:spinner id="minMax" value="#{controllerOrder.weight}" min="100" max="5000" stepFactor="50"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td>
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="phone" value="Phone"/>
+                        <p:inputMask id="phone" value="#{controllerOrder.phone}" mask="+375(99) 999-99-99"
+                                     validateMask="true"/>
+                    </div>
+                    <!--                    <h:message for="address" style="color: red"/>-->
+                </td>
+            </tr>
+            <tr>
+                <td>Добавить доставку</td>
+                <td>
+                    <p:selectOneRadio id="delivery" value="#{controllerOrder.deliveryFlag()}" unselectable="true">
+                        <f:selectItem itemLabel="Доставка" itemValue="true"/>
+                    </p:selectOneRadio>
+                </td>
+            </tr>
+            <tr>
+                <td>Адрес:</td>
+                <td>
+                    <h:inputText label="Адрес"
+                                 id="address" value="#{controllerOrder.address}"
+                                 required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Дата доставки</td>
+                <td>
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="buttonbar" value="Button Bar"/>
+                        <p:datePicker id="buttonbar" value="#{time.date}" mindate="#{time.minDate}"
+                                      maxdate="#{time.maxDate}" showButtonBar="true"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="timeonlyMinMax2" value="Время с:"/>
+                        <p:outputPanel>
+                            <p:datePicker id="timeonlyMinMax2" value="#{time.timeFrom}"
+                                          mindate="#{time.minTime}"
+                                          maxdate="#{time.maxTime}"
+                            />
+                        </p:outputPanel>
+                    </div>
+                </td>
+                <td>
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="timeonlyMinMax" value="  До:"/>
+                        <p:outputPanel>
+                            <p:datePicker id="timeonlyMinMax" value="#{time.timeTo}"
+                                          mindate="#{time.timeFrom}"
+                                          maxdate="#{time.maxTime}"
+                            />
+                        </p:outputPanel>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+        <p><h:commandButton value="Создать" action="#{controllerOrder.createOrder()}"/></p>
+    </h:form>
+</h:body>
+</html>

@@ -31,7 +31,7 @@ public class OrderRepo implements CrudRepository<Order> {
     public void delete(long id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Order order = (Order) session.load(Order.class, id);
+        Order order = session.load(Order.class, id);
         session.delete(order);
         transaction.commit();
         session.close();
@@ -39,7 +39,7 @@ public class OrderRepo implements CrudRepository<Order> {
 
     @Override
     public Order findById(long id) {
-        return (Order) HibernateSessionFactory.getSessionFactory().openSession().get(Order.class, id);
+        return HibernateSessionFactory.getSessionFactory().openSession().get(Order.class, id);
     }
 
     @Override
@@ -47,5 +47,11 @@ public class OrderRepo implements CrudRepository<Order> {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Query query = session.createQuery("From Order");
         return query.list();
+    }
+
+    public Long getCount() {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Query query = session.createQuery("select count(*) from Order");
+        return (Long) query.uniqueResult();
     }
 }
