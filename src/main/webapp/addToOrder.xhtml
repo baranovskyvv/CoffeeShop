@@ -51,7 +51,7 @@
                 </td>
             </tr>
             <tr>
-                <td> <p:outputLabel for="address" value="Адрес:"/>
+                <td><p:outputLabel for="address" value="Адрес:"/>
                     <h:inputText label="Адрес"
                                  id="address" value="#{controllerOrder.address}"
                                  required="true"/>
@@ -98,7 +98,11 @@
                 </td>
             </tr>
         </table>
-        <p><h:commandButton value="Создать заказ" action="#{controllerOrder.createOrder()}"/></p>
+        <h:form>
+            <div class="card">
+                <h:commandButton value="Создать заказ" action="#{controllerOrder.createOrder()}"/>
+            </div>
+        </h:form>
     </h:form>
 </h:body>
 </html>

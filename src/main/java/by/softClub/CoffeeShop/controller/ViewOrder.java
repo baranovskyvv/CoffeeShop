@@ -3,7 +3,9 @@ package by.softClub.CoffeeShop.controller;
 import by.softClub.CoffeeShop.model.Delivery;
 import by.softClub.CoffeeShop.model.Order;
 import by.softClub.CoffeeShop.service.OrderService;
+import org.primefaces.PrimeFaces;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -39,9 +41,16 @@ public class ViewOrder {
             Delivery delivery = new Delivery(address, LocalDateTime.of(ViewDateTime.date, ViewDateTime.timeFrom),
                     LocalDateTime.of(ViewDateTime.date, ViewDateTime.timeTo));
             orderService.createOrder(delivery, phone, orderService.findCoffee(nameCoffee), weight);
-        } else
+        } else {
             orderService.createOrder(null, phone, orderService.findCoffee(nameCoffee), weight);
-        return "/orderList.xhtml?faces-redirect=true";
+        }
+        showMessage();
+        try {
+            Thread.sleep(750);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "/home.xhtml?faces-redirect=true";
     }
 
     public Long countOfOrders() {
@@ -76,6 +85,11 @@ public class ViewOrder {
 
     public void findCoffee(String name) {
         orderHelper.setCoffee(orderService.findCoffee(name));
+    }
+
+    public void showMessage() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Сообщение", " Заказ успешно добавлен!");
+        PrimeFaces.current().dialog().showMessageDynamic(message);
     }
 
     public Order getOrderHelper() {
