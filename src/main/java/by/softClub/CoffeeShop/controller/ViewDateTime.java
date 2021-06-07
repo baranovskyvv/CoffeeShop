@@ -2,18 +2,20 @@ package by.softClub.CoffeeShop.controller;
 
 
 import javax.faces.bean.ManagedBean;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 
 @ManagedBean(name = "time")
 public class ViewDateTime {
     static LocalDate date;
     static LocalTime timeTo;
     static LocalTime timeFrom;
-    private LocalDate minDate;
-    private LocalDate maxDate;
-    private LocalTime minTime;
-    private LocalTime maxTime;
+    static LocalDate minDate;
+    static LocalDate maxDate;
+    static LocalTime minTime;
+    static LocalTime maxTime;
 
     public ViewDateTime() {
         init();
@@ -26,16 +28,12 @@ public class ViewDateTime {
         maxTime = LocalTime.of(21, 0);
     }
 
-
     public LocalDate getDate() {
         return date;
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
-        if (date.equals(minDate)) {
-            minTime = LocalTime.now();
-        }
+        ViewDateTime.date = date;
     }
 
     public LocalTime getTimeTo() {
@@ -43,7 +41,7 @@ public class ViewDateTime {
     }
 
     public void setTimeTo(LocalTime timeTo) {
-        this.timeTo = timeTo;
+        ViewDateTime.timeTo = timeTo;
     }
 
     public LocalTime getTimeFrom() {
@@ -51,7 +49,7 @@ public class ViewDateTime {
     }
 
     public void setTimeFrom(LocalTime timeFrom) {
-        this.timeFrom = timeFrom;
+        ViewDateTime.timeFrom = timeFrom;
     }
 
     public LocalDate getMinDate() {
@@ -59,7 +57,7 @@ public class ViewDateTime {
     }
 
     public void setMinDate(LocalDate minDate) {
-        this.minDate = minDate;
+        ViewDateTime.minDate = minDate;
     }
 
     public LocalDate getMaxDate() {
@@ -67,7 +65,7 @@ public class ViewDateTime {
     }
 
     public void setMaxDate(LocalDate maxDate) {
-        this.maxDate = maxDate;
+        ViewDateTime.maxDate = maxDate;
     }
 
     public LocalTime getMinTime() {
@@ -75,7 +73,7 @@ public class ViewDateTime {
     }
 
     public void setMinTime(LocalTime minTime) {
-        this.minTime = minTime;
+        ViewDateTime.minTime = minTime;
     }
 
     public LocalTime getMaxTime() {
@@ -83,7 +81,8 @@ public class ViewDateTime {
     }
 
     public void setMaxTime(LocalTime maxTime) {
-        this.maxTime = maxTime;
+        ViewDateTime.maxTime = maxTime;
     }
+
 }
 

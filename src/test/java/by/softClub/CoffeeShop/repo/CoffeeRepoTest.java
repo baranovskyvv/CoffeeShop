@@ -1,7 +1,6 @@
 package by.softClub.CoffeeShop.repo;
 
 import by.softClub.CoffeeShop.model.product.Coffee;
-import by.softClub.CoffeeShop.repo.garbage.CoffeeRepo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -44,7 +43,8 @@ class CoffeeRepoTest {
     @Test
     public void getAllNames(){
         CoffeeRepo coffeeRepo = new CoffeeRepo();
-        System.out.println(coffeeRepo.getAllNames());
+        List <String> list=coffeeRepo.getAllNames();
+        System.out.println(list);
     }
 
     @Test

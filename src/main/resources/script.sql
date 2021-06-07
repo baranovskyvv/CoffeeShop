@@ -1,69 +1,54 @@
-create table coffee
+create table if not exists orders
 (
-	product_id bigserial not null,
-	name varchar(150) not null,
-	manufacturer varchar(100),
-	description varchar(250),
-	price int not null,
-	type_of_coffee varchar(50),
-	weight int
+	order_id bigserial not null
+		constraint orders_pk
+			primary key,
+	delivery_id bigint,
+	phone varchar(13),
+	coffee_id bigint not null,
+	weight integer default 100 not null,
+	cost numeric not null,
+	column_7 integer
 );
 
-create unique index coffee_product_id_uindex
-	on coffee (product_id);
+alter table orders owner to postgres;
+
+create unique index if not exists orders_order_id_uindex
+	on orders (order_id);
+
+create unique index coffee_name_uindex
+	on coffee (name);
+
+-----------------------------------------------
+create table delivery
+(
+	id bigserial not null,
+	address int,
+	timeFrom timestamp,
+	timeTo timestamp
+);
+
+create unique index delivery_id_uindex
+	on delivery (id);
+
+alter table delivery
+	add constraint delivery_pk
+		primary key (id);
+
+-------------------------------------------------
+create table coffee
+(
+	id bigserial not null,
+	name varchar(200) not null,
+	manufacturer varchar(50),
+	description varchar(300),
+	price decimal,
+	type_of_coffee varchar(50)
+);
+
+create unique index coffee_id_uindex
+	on coffee (id);
 
 alter table coffee
 	add constraint coffee_pk
-		primary key (product_id);
-
-
-
--- ---------------------------------------------
-create table cart
-(
-	cart_id bigserial not null,
-	order_id bigint not null,
-	quantity int not null,
-	product_id bigint not null
-);
-
-create unique index cart_cart_id_uindex
-	on cart (cart_id);
-
-alter table cart
-	add constraint cart_pk
-		primary key (cart_id);
-
----------------------------------------------------------------
-create table users
-(
-	id bigserial not null,
-	phone varchar(15) not null,
-	name varchar(150) not null
-);
-
-create unique index users_id_uindex
-	on users (id);
-
-create unique index users_phone_uindex
-	on users (phone);
-
-alter table users
-	add constraint users_pk
 		primary key (id);
-
-----------------------------------------------------------
-create table orders
-(
-	order_id bigserial not null,
-	user_id bigint not null,
-	status varchar(15)
-);
-
-create unique index orders_order_id_uindex
-	on orders (order_id);
-
-alter table orders
-	add constraint orders_pk
-		primary key (order_id);
-

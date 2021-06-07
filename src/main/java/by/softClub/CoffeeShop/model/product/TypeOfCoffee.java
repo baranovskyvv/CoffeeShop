@@ -4,5 +4,4 @@ public enum TypeOfCoffee {
     Arabica,
     Robusta,
     Mix
-
 }

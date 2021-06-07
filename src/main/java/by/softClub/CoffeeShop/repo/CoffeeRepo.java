@@ -1,7 +1,6 @@
-package by.softClub.CoffeeShop.repo.garbage;
+package by.softClub.CoffeeShop.repo;
 
 import by.softClub.CoffeeShop.model.product.Coffee;
-import by.softClub.CoffeeShop.repo.CrudRepository;
 import by.softClub.CoffeeShop.util.HibernateSessionFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -29,7 +28,7 @@ public class CoffeeRepo implements CrudRepository<Coffee> {
     public void delete(long id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Coffee coffee = (Coffee) session.load(Coffee.class, id);
+        Coffee coffee = session.load(Coffee.class, id);
         session.delete(coffee);
         transaction.commit();
         session.close();
@@ -57,4 +56,6 @@ public class CoffeeRepo implements CrudRepository<Coffee> {
         query.setParameter("paramName",name);
         return (Coffee) query.uniqueResult();
     }
+
+
 }

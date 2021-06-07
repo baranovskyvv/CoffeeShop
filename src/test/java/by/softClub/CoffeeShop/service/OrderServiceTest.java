@@ -8,7 +8,6 @@ class OrderServiceTest {
 
     @Test
     void getOrdersMap() {
-        OrderService orderService = new OrderService();
-        System.out.println(orderService.getOrdersMap());
+
     }
 }

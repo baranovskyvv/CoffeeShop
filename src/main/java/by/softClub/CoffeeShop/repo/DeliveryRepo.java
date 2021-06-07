@@ -39,7 +39,7 @@ public class DeliveryRepo implements CrudRepository<Delivery> {
 
     @Override
     public Delivery findById(long id) {
-        return (Delivery) HibernateSessionFactory.getSessionFactory().openSession().get(Delivery.class, id);
+        return HibernateSessionFactory.getSessionFactory().openSession().get(Delivery.class, id);
     }
 
     @Override

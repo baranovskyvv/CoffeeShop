@@ -54,4 +54,6 @@ public class OrderRepo implements CrudRepository<Order> {
         Query query = session.createQuery("select count(*) from Order");
         return (Long) query.uniqueResult();
     }
+
+
 }

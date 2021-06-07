@@ -8,26 +8,25 @@
 
 <h:body>
     <h:form>
-        <h2>Создание заказа</h2>
+        <h2>Форма редактирования заказа</h2>
         <table>
             <tr>
                 <td>Название кофе:</td>
                 <td>
-                    <p:selectOneMenu id="name" value="#{controllerOrder.nameCoffee}">
-                        <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <p:selectOneMenu id="name" value="#{controllerOrder.orderHelper.coffee.name}">
+                        <f:selectItem itemLabel="Выберите название кофе" itemValue=""/>
                         <f:selectItems value="#{controllerOrder.allName}"/>
                     </p:selectOneMenu>
                 </td>
             </tr>
+
             <tr>
                 <td>Вес</td>
                 <td>
                     <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel for="minMax" value="Введите вес:"/>
-                        <p:spinner id="minMax" value="#{controllerOrder.weight}" min="100" max="6000" stepFactor="50">
-                            <f:validator validatorId="weightValidator"/>
-                            <p:message for="minMax" display="icon"/>
-                        </p:spinner>
+                        <p:spinner id="minMax" value="#{controllerOrder.orderHelper.weightInGram}" min="100" max="5000"
+                                   stepFactor="50"> <p:message for="minMax" display="icon"/> </p:spinner>
                     </div>
                 </td>
             </tr>
@@ -36,7 +35,7 @@
                 <td>
                     <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel for="phone" value="Phone"/>
-                        <p:inputMask id="phone" value="#{controllerOrder.phone}" mask="+375(99) 999-99-99"
+                        <p:inputMask id="phone" value="#{controllerOrder.orderHelper.phone}" mask="+375(99) 999-99-99"
                                      validateMask="true">
                             <f:validator validatorId="phoneValidator"/>
                             <p:message for="phone" display="icon"/></p:inputMask>
@@ -56,18 +55,19 @@
                 <td>Адрес:</td>
                 <td>
                     <h:inputText label="Адрес"
-                                 id="address" value="#{controllerOrder.address}"
+                                 id="address" value="#{controllerOrder.orderHelper.delivery.address}"
                                  required="true"/>
                 </td>
             </tr>
             <tr>
+                <td>Дата доставки</td>
                 <td>
                     <div class="p-field p-col-12 p-md-4">
-                        <p:outputLabel for="deliveryDate" value="Дата доставки"/>
-                        <p:datePicker id="deliveryDate" value="#{time.date}" mindate="#{time.minDate}"
+                        <p:outputLabel for="delivery" value="Дата доставки"/>
+                        <p:datePicker id="delivery" value="#{time.date}" mindate="#{time.minDate}"
                                       maxdate="#{time.maxDate}" showButtonBar="true">
                             <f:validator validatorId="dateValidator"/>
-                            <p:message for="deliveryDate" display="icon"/>
+                            <p:message for="delivery" display="icon"/>
                         </p:datePicker>
                     </div>
                 </td>
@@ -81,8 +81,7 @@
                                           mindate="#{time.minTime}"
                                           maxdate="#{time.maxTime}">
                                 <f:validator validatorId="timeFromValidator"/>
-                                <p:message for="timeonlyMin" display="icon"/>
-                            </p:datePicker>
+                                <p:message for="timeonlyMin" display="icon"/></p:datePicker>
                         </p:outputPanel>
                     </div>
                 </td>
@@ -90,18 +89,16 @@
                     <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel for="timeonlyMax" value="  До:"/>
                         <p:outputPanel>
-                            <p:datePicker id="timeonlyMax" value="#{time.timeTo}"
-                                          mindate="#{time.minTime}"
-                                          maxdate="#{time.maxTime}">
+                            <p:datePicker id="timeonlyMax" value="#{time.timeTo}">
                                 <f:validator validatorId="timeToValidator"/>
-                                <p:message for="timeonlyMax" display="icon"/>
-                            </p:datePicker>
+                                <p:message for="timeonlyMax" display="icon"/> </p:datePicker>
                         </p:outputPanel>
                     </div>
                 </td>
             </tr>
+
         </table>
-        <p><h:commandButton value="Создать заказ" action="#{controllerOrder.createOrder()}"/></p>
+        <p><h:commandButton value="Внести изменнеия в заказ" action="#{controllerOrder.updateOrder()}"/></p>
     </h:form>
 </h:body>
 </html>

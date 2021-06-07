@@ -12,5 +12,4 @@ public interface CrudRepository<T> {
     T findById(long id);
 
     List<T> findAll();
-
 }

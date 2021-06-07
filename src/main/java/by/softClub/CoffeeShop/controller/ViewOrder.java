@@ -1,34 +1,37 @@
 package by.softClub.CoffeeShop.controller;
 
-
 import by.softClub.CoffeeShop.model.Delivery;
 import by.softClub.CoffeeShop.model.Order;
 import by.softClub.CoffeeShop.service.OrderService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @SessionScoped
 @ManagedBean(name = "controllerOrder")
 public class ViewOrder {
-
     private OrderService orderService = new OrderService();
-    private Order orderDeleteHelper;
+    private Order orderHelper;
     private String nameCoffee;
     private Integer weight;
     private String phone;
     private boolean deliveryFlag = false;
     private String address;
 
-
     public List<String> getAllName() {
         return orderService.getAllNames();
+    }
+
+    public String updateOrder() {
+        orderHelper.getDelivery().setTimeFrom(LocalDateTime.of(ViewDateTime.date, ViewDateTime.timeFrom));
+        orderHelper.getDelivery().setTimeTo(LocalDateTime.of(ViewDateTime.date, ViewDateTime.timeTo));
+        orderService.update(orderHelper);
+
+        return "/orderList.xhtml?faces-redirect=true";
     }
 
     public String createOrder() {
@@ -50,8 +53,16 @@ public class ViewOrder {
     }
 
     public String goToDeletePage(long id) {
-        orderDeleteHelper = orderService.getOrder(id);
+        orderHelper = orderService.getOrder(id);
         return "/delete.xhtml?faces-redirect=true";
+    }
+
+    public String goToUpdate(long id) {
+        orderHelper = orderService.getOrder(id);
+        ViewDateTime.date = orderHelper.getDelivery().getTimeFrom().toLocalDate();
+        ViewDateTime.timeFrom = orderHelper.getDelivery().getTimeFrom().toLocalTime();
+        ViewDateTime.timeTo = orderHelper.getDelivery().getTimeTo().toLocalTime();
+        return "/update.xhtml?faces-redirect=true";
     }
 
     public String delete(long id) {
@@ -64,15 +75,15 @@ public class ViewOrder {
     }
 
     public void findCoffee(String name) {
-        orderDeleteHelper.setCoffee(orderService.findCoffee(name));
+        orderHelper.setCoffee(orderService.findCoffee(name));
     }
 
-    public Order getOrderDeleteHelper() {
-        return orderDeleteHelper;
+    public Order getOrderHelper() {
+        return orderHelper;
     }
 
-    public void setOrderDeleteHelper(Order orderDeleteHelper) {
-        this.orderDeleteHelper = orderDeleteHelper;
+    public void setOrderHelper(Order orderHelper) {
+        this.orderHelper = orderHelper;
     }
 
     public String getNameCoffee() {

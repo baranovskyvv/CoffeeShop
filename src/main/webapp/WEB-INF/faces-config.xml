@@ -16,7 +16,6 @@
             <from-outcome>showOrders</from-outcome>
             <to-view-id>/orderList.xhtml</to-view-id>
         </navigation-case>
-
     </navigation-rule>
 
 </faces-config>

@@ -4,11 +4,9 @@ import by.softClub.CoffeeShop.model.Delivery;
 import by.softClub.CoffeeShop.model.Order;
 import by.softClub.CoffeeShop.model.product.Coffee;
 import by.softClub.CoffeeShop.repo.OrderRepo;
-import by.softClub.CoffeeShop.repo.garbage.CoffeeRepo;
+import by.softClub.CoffeeShop.repo.CoffeeRepo;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-
 
 
 public class OrderService {
@@ -35,20 +33,19 @@ public class OrderService {
         orderRepo.save(new Order(delivery, phone, coffee, weightInGram));
     }
 
-    public LinkedHashMap<Long, String> getOrdersMap() {
-        List<Order> list = getAllOrders();
-        LinkedHashMap<Long, String> map = new LinkedHashMap<>();
-        for (Order order : list) {
-            map.put(order.getId(), order.toString());
-        }
-        return map;
-    }
-
     public Order getOrder(long id) {
         return orderRepo.findById(id);
     }
 
     public Coffee findCoffee(String name) {
         return coffeeRepo.findByName(name);
+    }
+
+    public void update(Order orderHelper) {
+        orderRepo.update(orderHelper);
+    }
+
+    public Double getCost(String name) {
+        return coffeeRepo.findByName(name).getPrice();
     }
 }
