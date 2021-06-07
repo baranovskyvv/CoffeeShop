@@ -1,10 +1,8 @@
 package by.softClub.CoffeeShop.model.product;
 
-
-import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 
-@ManagedBean(name = "coffee")
+
 @Entity
 @Table(name = "coffee")
 public class Coffee extends Product {

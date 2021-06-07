@@ -22,11 +22,11 @@
         <flyway.password>123456</flyway.password>
         <flyway.url>jdbc:postgresql://127.0.0.1:5432/coffee_shop</flyway.url>
         <flyway.schemas>public</flyway.schemas>
-        <!-- FlyWay -->
+        <!-- Primefaces -->
         <primefacesVersion>10.0.0</primefacesVersion>
-
+        <!-- JavaxFaces -->
         <javax.facesVersion>2.2.10</javax.facesVersion>
-
+        <!-- Jstl -->
         <jstlVersion>1.2</jstlVersion>
     </properties>
 
@@ -44,6 +44,16 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-war-runner</artifactId>
                 <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flywayVersion}</version>
+                <configuration>
+                    <user>${flyway.user}</user>
+                    <password>${flyway.password}</password>
+                    <url>${flyway.url}</url>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -4,5 +4,6 @@ public enum Manufacturer {
     INDIA,
     BELARUS,
     POLAND,
-    MEXICO
+    MEXICO,
+    GERMANY
 }

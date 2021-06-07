@@ -1,0 +1,9 @@
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Lavazza', 'GERMANY', 'blabla', 150, 'Arabica');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Dollmayer', 'GERMANY', 'blabla', 130, 'Arabica');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Жокей', 'BELARUS', 'blabla', 70, 'Mix');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Nescafe', 'POLAND', 'blabla', 95.5, 'Mix');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Carriba', 'MEXICO', 'blabla', 123, 'Arabica');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Americano', 'MEXICO', 'blabla', 100, 'Arabica');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'TheBestCoffee', 'GERMANY', 'blabla', 127.99, 'Arabica');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'Limpopo', 'BELARUS', 'blabla', 30.6, 'Robusta');
+INSERT INTO "public"."coffee" ("id", "name", "manufacturer", "description", "price", "type_of_coffee") VALUES (DEFAULT, 'AmazonkaCoffee', 'MEXICO', 'blabla', 156.5, 'Arabica');

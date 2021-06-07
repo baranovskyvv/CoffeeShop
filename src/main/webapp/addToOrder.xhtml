@@ -11,20 +11,19 @@
         <h2>Создание заказа</h2>
         <table>
             <tr>
-                <td>Название кофе:</td>
                 <td>
+                    <p:outputLabel for="name" value="Название кофе:"/>
                     <p:selectOneMenu id="name" value="#{controllerOrder.nameCoffee}">
-                        <f:selectItem itemLabel="Select One" itemValue=""/>
+                        <f:selectItem itemLabel="Выберите название кофе" itemValue=""/>
                         <f:selectItems value="#{controllerOrder.allName}"/>
                     </p:selectOneMenu>
                 </td>
             </tr>
             <tr>
-                <td>Вес</td>
                 <td>
                     <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel for="minMax" value="Введите вес:"/>
-                        <p:spinner id="minMax" value="#{controllerOrder.weight}" min="100" max="6000" stepFactor="50">
+                        <p:spinner id="minMax" value="#{controllerOrder.weight}" min="100" max="5000" stepFactor="50">
                             <f:validator validatorId="weightValidator"/>
                             <p:message for="minMax" display="icon"/>
                         </p:spinner>
@@ -32,10 +31,9 @@
                 </td>
             </tr>
             <tr>
-                <td>Телефон</td>
                 <td>
                     <div class="p-field p-col-12 p-md-4">
-                        <p:outputLabel for="phone" value="Phone"/>
+                        <p:outputLabel for="phone" value="Номер телефона:"/>
                         <p:inputMask id="phone" value="#{controllerOrder.phone}" mask="+375(99) 999-99-99"
                                      validateMask="true">
                             <f:validator validatorId="phoneValidator"/>
@@ -45,7 +43,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Добавить доставку</td>
+                <td>Добавить доставку(стоимость доставки 3 руб)</td>
                 <td>
                     <p:selectOneRadio id="deliveryFlag" value="#{controllerOrder.deliveryFlag()}" unselectable="true">
                         <f:selectItem itemLabel="Доставка" itemValue="true"/>
@@ -53,8 +51,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Адрес:</td>
-                <td>
+                <td> <p:outputLabel for="address" value="Адрес:"/>
                     <h:inputText label="Адрес"
                                  id="address" value="#{controllerOrder.address}"
                                  required="true"/>
